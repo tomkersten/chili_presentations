@@ -1,0 +1,77 @@
+ul.presentations li {
+  list-style-type: none;
+  float: left;
+  margin-right: 25px;
+}
+
+.presentation h3 {
+  border-bottom: none;
+  font-size: 12px;
+  width: 128px;
+  padding: 5px 0 0 0;
+  margin: 0;
+}
+
+.presentation {
+  padding-bottom: 30px;
+}
+
+.presentation.single .presentation-cell {
+  float: left;
+  margin-right: 20px;
+}
+
+.presentation .gravatar {
+  float: right;
+}
+
+.presentation.single dt {
+  font-weight: bold;
+  display: block;
+  width: 100px;
+}
+
+.presentation input {
+  width: 250px;
+}
+
+.presentation-cell {
+  background-color:#000;
+  text-align: right;
+  display: block;
+}
+
+.presentation .presentation-cell.small {
+  width:128px;
+  height:96px;
+}
+
+.presentation .presentation-cell.large {
+  width:640px;
+  height:390px;
+}
+
+.presentation-cell span {
+  position:relative;
+  top: 81px;
+  padding-right: 3px;
+  color: #CCC;
+  display: block;
+}
+
+.presentation dl {
+  margin-top: 0;
+}
+
+.presentation dt {
+  float: left;
+  padding-right: 3px;
+}
+
+.presentation dd {
+  margin: 3px;
+  clear: after;
+  display: block;
+}
+
+

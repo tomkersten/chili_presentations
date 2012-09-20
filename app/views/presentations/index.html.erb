@@ -1,0 +1,22 @@
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag '/plugin_assets/chili_videos/stylesheets/presentations' %>
+<% end %>
+
+<div class="contextual">
+  <%= link_to(l(:new_presentation_label), new_project_presentation_path(@project), :class => 'icon icon-add') if User.current.allowed_to?(:add_presentation, nil, :global => true) %>
+</div>
+
+<h2>Presentations (newest first)</h2>
+
+<%- if @presentations.empty? %>
+  <p class="nodata">
+    No presentations uploaded yet!
+    <%= link_to "Add one...", new_project_presentation_path(@project) if User.current.allowed_to?(:add_presentation, nil, :global => true) %>
+  <p>
+<%- else %>
+  <ul>
+    <%- @videos.each do |video| %>
+      <li><%= @video.title %></li>
+    <%- end %>
+  </ul>
+<%- end %>
