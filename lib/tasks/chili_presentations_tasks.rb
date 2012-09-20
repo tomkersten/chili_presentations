@@ -11,7 +11,7 @@ class ChiliPresentationsTasks < Rake::TaskLib
   def define
     namespace :chili_presentations do
       desc "Install ChiliPresentations plugin (migrate database, include assets, etc)"
-      task :install => [:migrate_db]
+      task :install => [:migrate_db, :symlink_assets]
 
       desc "Uninstalls ChiliPresentations plugin (removes database modifications, removes assets, etc)"
       task :uninstall => [:environment] do
@@ -19,6 +19,7 @@ class ChiliPresentationsTasks < Rake::TaskLib
         migrate_db(:to_version => 0)
 
         puts "Removing link to ChiliPresentations assets (stylesheets, js, etc)..."
+        remove_symlink asset_destination_dir
       end
 
       task :migrate_db => [:environment] do
@@ -26,6 +27,13 @@ class ChiliPresentationsTasks < Rake::TaskLib
         ActiveRecord::Migration.verbose = ENV["VERBOSE"] ? ENV["VERBOSE"] == "true" : true
         ActiveRecord::Migrator.migrate(gem_db_migrate_dir, ENV["VERSION"] ? ENV["VERSION"].to_i : nil)
         Rake::Task["db:schema:dump"].invoke if ActiveRecord::Base.schema_format == :ruby
+      end
+
+      task :symlink_assets => [:environment] do
+        # HACK: Symlinks the files from plugindir/assets to the appropriate place in
+        # the rails application
+        puts "Symlinking assets (stylesheets, etc)..."
+        add_symlink asset_source_dir, asset_destination_dir
       end
     end
   end
@@ -37,6 +45,15 @@ class ChiliPresentationsTasks < Rake::TaskLib
 
     def gem_root
       @gem_root ||= File.expand_path(File.dirname(__FILE__) + "/../..")
+    end
+
+    def remove_symlink(symlink_file)
+      system("unlink #{symlink_file}") if File.exists?(symlink_file)
+    end
+
+    def add_symlink(source, destination)
+      remove_symlink destination
+      system("ln -s #{source} #{destination}")
     end
 
     def gem_db_migrate_dir
