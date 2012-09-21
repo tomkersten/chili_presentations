@@ -7,7 +7,7 @@ README.md
 Rakefile
 app/controllers/presentations_controller.rb
 app/helpers/presentations_helper.rb
-app/models/video.rb
+app/models/presentation.rb
 app/views/presentations/edit.html.erb
 app/views/presentations/index.html.erb
 app/views/presentations/new.html.erb
@@ -17,6 +17,7 @@ assets/stylesheets/presentations.css
 autotest/discover.rb
 config/locales/en.yml
 config/routes.rb
+db/migrate/20120920025054_create_presentations.rb
 init.rb
 lang/en.yml
 lib/chili_presentations.rb

@@ -5,8 +5,14 @@ require 'chili_presentations'
 require 'dispatcher'
 
 Dispatcher.to_prepare :chili_presentations do
-#  require_dependency 'project'
-#  Project.send(:include, VideoProjectPatch) unless Project.included_modules.include? VideoProjectPatch
+  require_dependency 'project'
+  Project.send(:include, PresentationProjectPatch) unless Project.included_modules.include? PresentationProjectPatch
+
+  require_dependency 'user'
+  User.send(:include, PresentationUserPatch) unless User.included_modules.include? PresentationUserPatch
+
+  require_dependency 'version'
+  Version.send(:include, PresentationVersionPatch) unless Version.included_modules.include? PresentationVersionPatch
 end
 
 

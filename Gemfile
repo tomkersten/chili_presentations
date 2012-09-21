@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'friendly_id', '~> 3.2.1'
+gem "paperclip", "~> 2.7"
 
 group :development, :test do
   gem "rails", "2.3.14"

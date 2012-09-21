@@ -30,7 +30,8 @@ begin
     self.extra_rdoc_files = FileList['README.md', 'LICENSE', 'History.txt']
     self.summary = "ChiliProject (/Redmine) plugin which makes it easy to upload an HTML-presentation and associate it with a project. The plugin adds 'Presentations' tab to a project site which contains any associated presentations."
     self.extra_deps       = [
-                              ['friendly_id', '3.2.1.1']
+                              ['friendly_id', '3.2.1.1'],
+                              ['paperclip', '2.7.0']
                             ]
   end
 
