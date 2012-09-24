@@ -1,5 +1,5 @@
 class Presentation < ActiveRecord::Base
-  INDEX_FILENAME = "index.html.erb"
+  INDEX_FILENAME = "index.html"
   UNPACKED_DIRNAME = "unpacked"
 
   unloadable
@@ -18,11 +18,11 @@ class Presentation < ActiveRecord::Base
 
 
   def index_path
-    File.join(unpacked_base, INDEX_FILENAME)
+    File.join(UNPACKED_DIRNAME, INDEX_FILENAME)
   end
 
   def path_to(some_asset)
-    some_asset.blank? ? index_path : File.join(unpacked_base, *some_asset)
+    some_asset.blank? ? index_path : File.join(UNPACKED_DIRNAME, *some_asset)
   end
 
   def permalink
@@ -32,9 +32,4 @@ class Presentation < ActiveRecord::Base
   def to_s
     title
   end
-
-  def unpacked_base
-    File.join(File.dirname(contents.path), UNPACKED_DIRNAME)
-  end
-  private :unpacked_base
 end

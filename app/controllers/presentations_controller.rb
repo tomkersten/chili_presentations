@@ -23,16 +23,14 @@ class PresentationsController < ApplicationController
     end
   end
 
-  # TODO: Set up something on nginx for x-file stuff...pass auth to app, but
-  #       serve static files w/ nginx.
-  # TODO: Handle CSS, JS, and other static asset requests
+  # Defers serving files to nginx via the X-Accel-Redirect header
   def show
     if presentation.blank?
       flash[:error] = "The requested presentation does not exist. Please verify the link or send the project owner a message."
       redirect_to(project_presentations_path(@project))
     end
 
-    render :file => presentation.path_to(params[:static_asset_path]), :layout => false
+    head :x_accel_redirect => presentation.path_to(params[:static_asset_path]), :content_type => requested_content_type
   end
 
   def destroy
@@ -69,5 +67,13 @@ class PresentationsController < ApplicationController
 
     def presentation
       @presentation ||= @project.presentations.find_by_cached_slug(params[:id])
+    end
+
+    def requested_content_type
+      case presentation.path_to(params[:static_asset_path])
+      when /\.css$/ then "text/css"
+      when /\.js$/ then "text/javascript"
+      else "text/html"
+      end
     end
 end
