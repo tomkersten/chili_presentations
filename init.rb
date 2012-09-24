@@ -17,34 +17,34 @@ end
 
 
 Redmine::Plugin.register 'chili_presentations' do
-  name 'Chili Web Presentations plugin'
+  name 'Chili Presentations plugin'
   author 'Tom Kersten'
   description 'Adds "Presentations" module which allows you to upload a zipped prentation folder including an index.html file and view it in the context of your project-site.'
-  version ChiliWebPresentations::VERSION
+  version ChiliPresentations::VERSION
   url 'https://github.com/tomkersten/chili_presentations'
   author_url 'http://tomkersten.com/'
 
   project_module :presentations do
     permission :view_presentation_list, {:presentations => [:index]}
-    permission :view_specific_presentation, {:presentations => [:show, :view]}
+    permission :view_specific_presentation, {:presentations => [:show]}
     permission :modify_presentation, {:presentations => [:edit,:update]}, {:require => :member}
     permission :delete_presentation, {:presentations => [:destroy]}, {:require => :member}
     permission :add_presentation, {:presentations => [:new, :create]}, {:require => :member}
   end
 
-  menu :project_menu, :presentations, { :controller => 'videos', :action => 'index' }, :caption => 'Presentations', :param => :project_id
+  menu :project_menu, :presentations, { :controller => 'presentations', :action => 'index' }, :caption => 'Presentations', :param => :project_id
 end
 
-#Redmine::WikiFormatting::Macros.register do
-#  desc "Provides a link to a video with the title of the video as the link text.\n" +
-#       "Usage examples:\n\n" +
-#       "  !{{video_link(id)}}\n"
-#  macro :video_link do |o, args|
-#    video_id = args[0]
-#    video = Video.find(video_id)
-#    VideosHelper.link_to_video(video)
-#  end
-#end
+Redmine::WikiFormatting::Macros.register do
+  desc "Provides a link to a Presentation with the title of the Presentation as the link text.\n" +
+       "Usage examples:\n\n" +
+       "  !{{presentation_link(id)}}\n"
+  macro :presentation_link do |o, args|
+    presentation_id = args[0]
+    presentation = Presentation.find(presentation_id)
+    PresentationsHelper.link_to_presentation(presentation)
+  end
+end
 
 #Redmine::WikiFormatting::Macros.register do
 #  desc "Creates a horizontal list of videos associated with the specified verison.\n" +

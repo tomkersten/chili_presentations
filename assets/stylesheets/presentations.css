@@ -2,12 +2,15 @@ ul.presentations li {
   list-style-type: none;
   float: left;
   margin-right: 25px;
+  border-bottom: 1px dashed #EEE;
+  width: 100%;
 }
 
-.presentation h3 {
-  border-bottom: none;
-  font-size: 12px;
-  width: 128px;
+ul.presentations li:hover {
+  background-color: #EEE;
+}
+
+.presentation h2 {
   padding: 5px 0 0 0;
   margin: 0;
 }
@@ -16,39 +19,19 @@ ul.presentations li {
   padding-bottom: 30px;
 }
 
-.presentation.single .presentation-cell {
-  float: left;
-  margin-right: 20px;
+.presentation .description {
+  width: 75%;
+  display: inline-block;
+  margin-top: 10px;
+  margin-left: 10px;
 }
 
 .presentation .gravatar {
   float: right;
 }
 
-.presentation.single dt {
-  font-weight: bold;
-  display: block;
-  width: 100px;
-}
-
 .presentation input {
   width: 250px;
-}
-
-.presentation-cell {
-  background-color:#000;
-  text-align: right;
-  display: block;
-}
-
-.presentation .presentation-cell.small {
-  width:128px;
-  height:96px;
-}
-
-.presentation .presentation-cell.large {
-  width:640px;
-  height:390px;
 }
 
 .presentation-cell span {
@@ -60,18 +43,27 @@ ul.presentations li {
 }
 
 .presentation dl {
-  margin-top: 0;
+  margin-top: 10px;
+  margin-left: 5px;
+  float: right;
+  width: 22%;
 }
 
 .presentation dt {
-  float: left;
-  padding-right: 3px;
-}
+  float:left;
+  text-align: right;
+  width:25%; /* adjust the width; make sure the total of both is 100% */
+ }
 
 .presentation dd {
-  margin: 3px;
-  clear: after;
-  display: block;
+ float:left;
+ padding-left: 5px;
+ width:70%; /* adjust the width; make sure the total of both is 100% */
 }
 
-
+.presentation .manage-links {
+  font-size: 10px;
+  float: right;
+  padding-right: 5px;
+  padding-top: 7px;
+}

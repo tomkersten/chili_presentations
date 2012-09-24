@@ -22,7 +22,7 @@ class ChiliPresentationsTasks < Rake::TaskLib
         remove_symlink asset_destination_dir
       end
 
-      task :migrate_db => [:environment] do
+      task :migrate_db => :environment do
         puts "Migrating chili_presentations..."
         ActiveRecord::Migration.verbose = ENV["VERBOSE"] ? ENV["VERBOSE"] == "true" : true
         ActiveRecord::Migrator.migrate(gem_db_migrate_dir, ENV["VERSION"] ? ENV["VERSION"].to_i : nil)
@@ -45,6 +45,14 @@ class ChiliPresentationsTasks < Rake::TaskLib
 
     def gem_root
       @gem_root ||= File.expand_path(File.dirname(__FILE__) + "/../..")
+    end
+
+    def asset_destination_dir
+      @destination_dir ||= File.expand_path("#{application_root}/public/plugin_assets/chili_presentations")
+    end
+
+    def asset_source_dir
+      @source_dir ||= File.expand_path(gem_root + "/assets")
     end
 
     def remove_symlink(symlink_file)

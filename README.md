@@ -59,6 +59,10 @@ previous version installed).
 
 Next, in your 'Rakefile', add:
 
+``` ruby
+require 'tasks/chili_presentations_tasks'
+```
+
 Run the installation rake task (runs migrations)
 
 ```
@@ -75,6 +79,12 @@ Run the uninstall rake task (reverts migrations)
 
 ```
 RAILS_ENV=production rake chili_videos:uninstall
+```
+
+In your 'Rakefile', remove:
+
+``` ruby
+require 'tasks/chili_presentations_tasks'
 ```
 
 In your 'Gemfile', remove:

@@ -4,28 +4,12 @@
 
 <h2>Updating "<%= @presentation %>" presentation...</h2>
 
-<%- form_for [@project, @presentation], :html => {:class => "tabular"} do |f|  %>
+
+<% labelled_tabular_form_for :presentation, @presentation, :url => project_presentation_path(@project, @presentation), :html => {:method => :put, :id => 'presentation-upload', :class => 'tabular', :multipart => true} do |f| %>
   <div class="box">
-    <p>
-      <%= f.label :title %>
-      <%= f.text_field :title %>
-    </p>
-
-    <p>
-      <%= f.label :description %>
-      <%= f.text_area :description %>
-    </p>
-
-    <%- unless @versions.blank? %>
-      <p>
-        <%- f.label :version_id %>
-        <select name="presentation[version_id]" id="presentation_version_id">
-          <%= options_for_select @versions.map {|v| [v.name, v.id]}, @presentation.version_id %>
-          <option value="">No version</option>
-        </select>
-      </p>
-    <%- end %>
+    <%= render :partial => 'shared_form', :locals => {:f => f, :versions => @versions} %>
   </div>
+
   <%= f.submit "Save updates" %>
   or
   <%= link_to "Cancel", project_presentation_path(@project, @presentation) %>

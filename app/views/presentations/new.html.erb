@@ -4,38 +4,18 @@
 
 <h2>Upload project presentation...</h2>
 
-<form id="presentation-upload" action="http://api2.transloadit.com/assemblies" enctype="multipart/form-data" method="POST" class="tabular">
+<%= error_messages_for 'presentation' %>
+
+<% labelled_tabular_form_for :presentation, @presentation, :url => project_presentations_path(@project), :html => {:id => 'presentation-upload', :class => 'tabular', :multipart => true} do |f| %>
   <div class="box">
-    <input type="hidden" name="params" value="{&quot;auth&quot;:{&quot;key&quot;:&quot;<%= @api_key %>&quot;},&quot;template_id&quot;:&quot;<%= @workflow %>&quot;,&quot;redirect_url&quot;:&quot;<%= upload_complete_project_presentations_url(@project) %>&quot;}" />
-    <input type="hidden" name="project_id" value="<%= @project.to_param %>"/>
-    <input type="hidden" name="user_id" value="<%= User.current.id %>"/>
+    <%= render :partial => 'shared_form', :locals => {:f => f, :versions => @versions} %>
 
     <p>
-      <label for="title">Title:</label>
-      <input type="text" name="title" id="title" value=""/>
-    </p>
-
-    <p>
-      <label for="description">Description:</label>
-      <textarea name="description" id="description"></textarea>
-    </p>
-
-    <%- unless @versions.blank? %>
-      <p>
-        <label for="version">Version:</label>
-        <select name="version_id" id="version">
-          <%= options_for_select @versions.map {|v| [v.name, v.id]} %>
-          <option value="">No version</option>
-        </select>
-      </p>
-    <%- end %>
-
-    <p>
-      <label for="file">Select file to upload...</label>
-      <input type="file" name="my_file" id="file" />
+      <%= f.file_field :contents, :label => 'Select file to upload', :required => true %>
     </p>
   </div>
+
   <input type="submit" value="Upload Presentation" />
   or
   <%= link_to "Cancel", project_presentations_path(@project) %>
-</form>
+<%- end %>

@@ -1,0 +1,14 @@
+<p>
+  <%= f.text_field :title, :size => 50, :required => true %>
+</p>
+
+<p>
+  <%= f.text_area :description, :width => 50 %>
+</p>
+
+<%- unless versions.blank? %>
+  <p>
+    <label for="presentation_version_id">Version:</label>
+    <%= f.collection_select :version_id, versions, :id, :name, :include_blank => true %>
+  </p>
+<%- end %>
