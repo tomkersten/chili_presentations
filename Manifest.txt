@@ -19,6 +19,7 @@ autotest/discover.rb
 config/locales/en.yml
 config/routes.rb
 db/migrate/20120920025054_create_presentations.rb
+db/migrate/20120920025554_create_slugs.rb
 init.rb
 lang/en.yml
 lib/chili_presentations.rb
