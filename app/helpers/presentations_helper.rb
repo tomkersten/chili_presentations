@@ -1,12 +1,5 @@
 module PresentationsHelper
-  include ActionView::Helpers::TextHelper
-  include ActionView::Helpers::UrlHelper
-  include ActionView::Helpers::TagHelper
   extend self
-
-  def gravatar_enabled?
-    Setting['gravatar_enabled'] == '1'
-  end
 
   def link_to_presentation_macro_markup(presentation)
     "{{presentation_link(#{presentation.permalink})}}"
@@ -19,7 +12,7 @@ module PresentationsHelper
 
   private
     def prjct_presentation_path(project, presentation)
-      "/projects/#{project.to_param}/presentations/#{presentation.to_param}"
+      "/projects/#{project.to_param}/presentations/#{presentation.to_param}/"
     end
 
     def usr_path(user)

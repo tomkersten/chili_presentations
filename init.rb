@@ -45,18 +45,3 @@ Redmine::WikiFormatting::Macros.register do
     PresentationsHelper.link_to_presentation(presentation)
   end
 end
-
-#Redmine::WikiFormatting::Macros.register do
-#  desc "Creates a horizontal list of videos associated with the specified verison.\n" +
-#       "Usage examples:\n\n" +
-#       "  !{{version_video_thumbnails(version_id)}}\n"
-#  macro :version_video_thumbnails do |o, args|
-#    version_id = args[0]
-#    version = Version.find_by_name(version_id) || Version.find_by_id(version_id)
-#    if version.blank?
-#      "'#{version_id}' version not found"
-#    else
-#      "#{VideosHelper.video_thumbnail_list(version.videos)}"
-#    end
-#  end
-#end
