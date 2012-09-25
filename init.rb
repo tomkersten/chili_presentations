@@ -33,6 +33,8 @@ Redmine::Plugin.register 'chili_presentations' do
   end
 
   menu :project_menu, :presentations, { :controller => 'presentations', :action => 'index' }, :caption => 'Presentations', :param => :project_id
+
+  ActiveRecord::Base.observers << :presentation_observer
 end
 
 Redmine::WikiFormatting::Macros.register do

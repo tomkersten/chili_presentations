@@ -7,7 +7,9 @@ class Presentation < ActiveRecord::Base
   validates_presence_of :title
 
   has_friendly_id :title, :use_slug => true
-  has_attached_file :contents
+  has_attached_file :contents,
+                    :path => ":rails_root/uploaded_presentations/:attachment/:id_partition/:style/:filename"
+
   has_attached_file :alternative_format
 
   belongs_to :user

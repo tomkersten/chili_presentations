@@ -15,8 +15,6 @@ class PresentationsController < ApplicationController
     @presentation = @project.presentations.new(presentation_params)
 
     if @presentation.save
-      # TODO: unzip to a folder
-      # TODO: rename index.html -> index.erb
       redirect_to project_presentations_path(@project)
     else
       render :action => :new
