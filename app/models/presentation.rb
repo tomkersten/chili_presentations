@@ -1,4 +1,5 @@
 class Presentation < ActiveRecord::Base
+  UPLOAD_BASE_DIR = File.join(Rails.root, "uploaded_presentations")
   INDEX_FILENAME = "index.html"
   UNPACKED_DIRNAME = "unpacked"
 
@@ -8,7 +9,7 @@ class Presentation < ActiveRecord::Base
 
   has_friendly_id :title, :use_slug => true
   has_attached_file :contents,
-                    :path => ":rails_root/uploaded_presentations/:attachment/:id_partition/:style/:filename"
+                    :path => "#{UPLOAD_BASE_DIR}/:attachment/:id_partition/:style/:filename"
 
   has_attached_file :alternative_format
 
@@ -20,11 +21,11 @@ class Presentation < ActiveRecord::Base
 
 
   def index_path
-    File.join(UNPACKED_DIRNAME, INDEX_FILENAME)
+    File.join(path_without_upload_base_dir, UNPACKED_DIRNAME, INDEX_FILENAME)
   end
 
-  def path_to(some_asset)
-    some_asset.blank? ? index_path : File.join(UNPACKED_DIRNAME, *some_asset)
+  def x_accel_redirect_path_to(some_asset)
+    some_asset.blank? ? index_path : File.join(path_without_upload_base_dir, UNPACKED_DIRNAME, *some_asset)
   end
 
   def permalink
@@ -34,4 +35,9 @@ class Presentation < ActiveRecord::Base
   def to_s
     title
   end
+
+  def path_without_upload_base_dir
+    File.dirname(contents.path.sub(/#{UPLOAD_BASE_DIR}/, ''))
+  end
+  private :path_without_upload_base_dir
 end

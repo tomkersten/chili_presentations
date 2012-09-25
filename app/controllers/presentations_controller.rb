@@ -28,7 +28,7 @@ class PresentationsController < ApplicationController
       redirect_to(project_presentations_path(@project))
     end
 
-    head :x_accel_redirect => presentation.path_to(params[:static_asset_path]), :content_type => requested_content_type
+    head :x_accel_redirect => presentation.x_accel_redirect_path_to(params[:static_asset_path]), :content_type => requested_content_type
   end
 
   def destroy
@@ -68,7 +68,7 @@ class PresentationsController < ApplicationController
     end
 
     def requested_content_type
-      case presentation.path_to(params[:static_asset_path])
+      case presentation.x_accel_redirect_path_to(params[:static_asset_path])
       when /\.css$/ then "text/css"
       when /\.js$/ then "text/javascript"
       else "text/html"
