@@ -1,4 +1,10 @@
-== 0.1.0 2012-09-24
+=== 0.1.1 / 2012-09-25
+
+* 1 bug fix:
+
+  * Fixed incorrect X-Accel-Redirect header path
+
+=== 0.1.0 2012-09-24
 
 * 1 major enhancement:
   * Initial release
