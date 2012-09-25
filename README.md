@@ -58,6 +58,23 @@ of that project's presentations.
 
 ## INSTALL:
 
+### In nginx
+
+Add the following block to your ChiliProject nginx config (inside your `server`
+block):
+
+```
+location ~ /contents/ {
+  # NOTE: Below, `root` is NOT set to `RAILS_ROOT/public`!
+  root RAILS_ROOT/uploaded_presentations;
+  internal;
+}
+```
+
+Cycle `nginx`.
+
+### In ChiliProject
+
 ```
 gem install chili_presentations
 ```
