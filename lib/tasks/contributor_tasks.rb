@@ -32,7 +32,7 @@ class ContributorTasks < Rake::TaskLib
       puts "#####################"
       puts "For the twitters"
       puts "#####################"
-      puts "[ANN] chili_presentations v#{ChiliPresentations::VERSION} released. Changes: [link], Repo: [link] #chiliproject"
+      puts "[ANN] chili_presentations v#{ChiliPresentations::VERSION} released. Changes: http://bit.ly/chili_presentation_changes, Repo: http://bit.ly/chili_presentations #chiliproject"
       puts "#####################"
 
     end
