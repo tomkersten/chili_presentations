@@ -20,6 +20,7 @@ class ChiliPresentationsTasks < Rake::TaskLib
 
         puts "Removing link to ChiliPresentations assets (stylesheets, js, etc)..."
         remove_symlink asset_destination_dir
+        puts post_uninstall_steps
       end
 
       task :migrate_db => :environment do
@@ -78,7 +79,7 @@ class ChiliPresentationsTasks < Rake::TaskLib
       [
         "!!!!! MANUAL STEPS !!!!!",
         "\t1. In your 'Gemfile', remove:",
-        "\t\tgem 'chili_videos'",
+        "\t\tgem 'chili_presentations'",
         "",
         "\t2. In your 'Rakefile', remove:",
         "\t\trequire 'tasks/chili_presentations_tasks'",
