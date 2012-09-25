@@ -74,21 +74,21 @@ class ChiliPresentationsTasks < Rake::TaskLib
       Rake::Task["db:schema:dump"].invoke if ActiveRecord::Base.schema_format == :ruby
     end
 
-#    def post_uninstall_steps
-#      [
-#        "!!!!! MANUAL STEPS !!!!!",
-#        "\t1. In your 'config/environment.rb', remove:",
-#        "\t\tconfig.gem 'chili_videos'",
-#        "",
-#        "\t2. In your 'Rakefile', remove:",
-#        "\t\trequire 'chili_videos'",
-#        "\t\trequire 'tasks/chili_videos_tasks'",
-#        "\t\tChiliVideosTasks.new",
-#        "",
-#        "\t3. Cycle your application server (mongrel, unicorn, etc)",
-#        "\n",
-#      ].join("\n")
-#    end
+    def post_uninstall_steps
+      [
+        "!!!!! MANUAL STEPS !!!!!",
+        "\t1. In your 'Gemfile', remove:",
+        "\t\tgem 'chili_videos'",
+        "",
+        "\t2. In your 'Rakefile', remove:",
+        "\t\trequire 'tasks/chili_presentations_tasks'",
+        "",
+        "\t3. Run 'bundle' (or 'bundle install') to update your Gemfile.lock",
+        "",
+        "\t4. Cycle your application server (mongrel, unicorn, etc)",
+        "\n",
+      ].join("\n")
+    end
 end
 
 ChiliPresentationsTasks.new
