@@ -8,10 +8,11 @@ Rakefile
 app/controllers/presentations_controller.rb
 app/helpers/presentations_helper.rb
 app/models/presentation.rb
+app/models/presentation_observer.rb
+app/views/presentations/_shared_form.html.erb
 app/views/presentations/edit.html.erb
 app/views/presentations/index.html.erb
 app/views/presentations/new.html.erb
-app/views/presentations/show.html.erb
 assets/stylesheets/forms.css
 assets/stylesheets/presentations.css
 autotest/discover.rb
