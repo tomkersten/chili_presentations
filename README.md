@@ -15,6 +15,17 @@ according to your 'permissions' settings.
 1. This plugin is distributed as a gem, but does
    ship with migrations and asset files (stylesheets, etc). Therefore,
    the installation procedure is not the standard process.
+1. This plugin must be deployed behind the nginx web server, or a server which
+   implements the same `X-Sendfile` behavior as nginx (none that I am aware of
+   do this). The controller which serves up the presentation defers this task
+   to nginx by setting the `X-Accel-Redirect` header. If ChiliProject is
+   deployed behind anything other than nginx, it is likely you will only be
+   shown a blank screen. (__NOTE:__ This could easily be changed, but there is
+   no reason in my environment to support other servers. Patches are absolutely
+   welcome.)
+1. You must be able to set up a simple directive in your nginx config and cycle
+   nginx in order to take advantage of the afforementioned `X-Accel-Redirect`
+   header feature of nginx.
 
 ## FEATURES:
 
@@ -39,6 +50,11 @@ of that project's presentations.
 
 * Gems:
   - friendly\_id (v3.2.1.1)
+  - paperclip (v2.7.0)
+
+* System commands:
+  - `unzip` must be installed and on the path of the user running the
+    ChiliProject application servers.
 
 ## INSTALL:
 
