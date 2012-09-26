@@ -4,7 +4,7 @@ require 'find'
 
 class PresentationObserver < ActiveRecord::Observer
   def after_save(presentation)
-    Rails.logger.info "Executing PresentationObserver (#{__FILE__}:#{__LINE__})"
+    Rails.logger.info "Executing PresentationObserver after_save hook (#{__FILE__}:#{__LINE__})"
 
     # location of existing compressed (zipped) file
     compressed_file = presentation.contents.path
@@ -31,5 +31,11 @@ class PresentationObserver < ActiveRecord::Observer
       end
       Rails.logger.info "Uncompressing uploaded presentation completed successfully."
     }
+  end
+
+  def after_destroy(presentation)
+    Rails.logger.info "Executing PresentationObserver after_destroy hook (#{__FILE__}:#{__LINE__})"
+    Paperclip.run("rm", "-rf #{File.dirname presentation.unzipped_location}")
+    Rails.logger.info "Cleaned up all unzipped files from #{presentation.unzipped_location}"
   end
 end
