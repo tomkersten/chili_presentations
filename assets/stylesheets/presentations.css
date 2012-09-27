@@ -11,7 +11,7 @@ ul.presentations li:hover {
 }
 
 .presentation h2 {
-  padding: 5px 0 0 0;
+  padding: 5px 0 0 5px;
   margin: 0;
 }
 
