@@ -1,3 +1,11 @@
+=== 0.1.3 / 2012-09-26
+
+* 2 bug fixes:
+
+  * Fix callback behavior to allow for updates
+  * Tweaked style of index page headings
+
+
 === 0.1.2 / 2012-09-26
 
 * 1 bug fix:
