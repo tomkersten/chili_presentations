@@ -13,6 +13,10 @@ class PresentationObserver < ActiveRecord::Observer
     destination_path = File.join(File.dirname(presentation.contents.path),
                                  Presentation::UNPACKED_DIRNAME)
 
+    if File.exists?(destination_path)
+      Paperclip.run("rm", "-rf #{destination_path}")
+    end
+
     Dir.mktmpdir {|tmpdir_path|
       Rails.logger.info "Temporarily unpacking presentation into #{tmpdir_path}"
       Paperclip.run("unzip", "#{compressed_file} -d #{tmpdir_path}")
@@ -28,6 +32,8 @@ class PresentationObserver < ActiveRecord::Observer
         # Presentation::UNPACKED_DIRNAME, regardless of original name/structure
         Rails.logger.info "Moving #{index_container} to #{destination_path}"
         FileUtils.move index_container, destination_path
+        # Update the #unzipped_location without executing callbacks. A bit hacky
+        Presentation.update_all({:unzipped_location => destination_path}, {:id => presentation.id})
       end
       Rails.logger.info "Uncompressing uploaded presentation completed successfully."
     }
