@@ -71,6 +71,9 @@ class PresentationsController < ApplicationController
       case presentation.x_accel_redirect_path_to(params[:static_asset_path])
       when /\.css$/ then "text/css"
       when /\.js$/ then "text/javascript"
+      when /\.png$/ then "image/png"
+      when /\.gif$/ then "image/gif"
+      when /\.(jpeg|jpg)$/ then "image/jpeg"
       else "text/html"
       end
     end
