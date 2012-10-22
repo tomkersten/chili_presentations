@@ -7,6 +7,9 @@ class PresentationsController < ApplicationController
     @presentations = @project.presentations
   end
 
+  def instructions
+  end
+
   def new
     @versions = @project.versions.open
   end
@@ -56,6 +59,12 @@ class PresentationsController < ApplicationController
     end
 
     redirect_to project_presentations_path(@project)
+  end
+
+  def download
+    send_data presentation.contents.path,
+              :filename => presentation.contents_file_name,
+              :type => presentation.contents.content_type
   end
 
   private

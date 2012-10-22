@@ -1,0 +1,38 @@
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag '/plugin_assets/chili_presentations/stylesheets/presentations' %>
+<% end %>
+
+<div class="contextual">
+  <%= link_to(l(:return_to_presentations_list_label), project_presentations_path(@project), :class => "icon icon-history") if User.current.allowed_to?(:view_presentation_list, nil, :global => true) %>
+</div>
+
+<h2>Before You Click "Download"...</h2>
+
+<p>
+Note that the file you will be downloading is a zipped directory containing an
+<code>index.html</code> file and any images, stylesheets or supporting HTML
+pages necessary.
+</p>
+
+<h3>To view the presentation locally...</h3>
+
+<ol class="steps">
+  <li>
+    <em>Unzip the folder.</em>
+    <span class="mute">Be sure to unzip it and not just let Windows Explorer
+    "navigate" it the directory for you, as it will not load assets like
+    stylesheets and images correctly if you do that.
+  </span>
+  </li>
+  <li>
+    <em>Open the <code>index.html</code> file</em>.
+    <span class="mute">
+      Ideally in Chrome, Firefix, or Safari web browser.  Internet Explorer is
+      very "hit-or-miss" on these types of web pages.
+    </span>
+  </li>
+</ol>
+
+<p class="download">
+  <%= link_to "Got it. Let me download it now...", download_project_presentation_path(@project, @presentation) %>
+</p>

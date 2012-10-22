@@ -27,6 +27,7 @@ Redmine::Plugin.register 'chili_presentations' do
   project_module :presentations do
     permission :view_presentation_list, {:presentations => [:index]}
     permission :view_specific_presentation, {:presentations => [:show]}
+    permission :download_presentation, {:presentations => [:download, :instructions]}, {:require => :member}
     permission :modify_presentation, {:presentations => [:edit,:update]}, {:require => :member}
     permission :delete_presentation, {:presentations => [:destroy]}, {:require => :member}
     permission :add_presentation, {:presentations => [:new, :create]}, {:require => :member}

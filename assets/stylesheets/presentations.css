@@ -1,3 +1,18 @@
+ol.steps {
+  list-style-type: decimal;
+  padding-left: 20px;
+}
+
+ol.steps em {
+  text-decoraton: none;
+  font-weight: bold;
+  font-style: normal;
+}
+
+.mute {
+  color: gray;
+}
+
 ul.presentations li {
   list-style-type: none;
   float: left;
@@ -66,4 +81,10 @@ ul.presentations li:hover {
   float: right;
   padding-right: 5px;
   padding-top: 7px;
+}
+
+.download {
+  padding: 1em;
+  font-size: 2em;
+  text-align: center;
 }
