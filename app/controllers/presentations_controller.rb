@@ -62,9 +62,10 @@ class PresentationsController < ApplicationController
   end
 
   def download
-    send_data presentation.contents.path,
+    send_file presentation.contents.path,
               :filename => presentation.contents_file_name,
-              :type => presentation.contents.content_type
+              :type => presentation.contents.content_type,
+              :streaming => true
   end
 
   private
