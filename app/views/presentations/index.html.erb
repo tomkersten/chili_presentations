@@ -21,8 +21,8 @@
         <%= link_to presentation.title, project_presentation_path(@project, presentation, :trailing_slash => true) %>
         <span class="manage-links">
             <%= link_to(l(:view_specific_presentation_label), project_presentation_path(@project, presentation, :trailing_slash => true), :class => 'icon icon-file presentation-show') if User.current.allowed_to?(:view_specific_presentation, nil, :global => true) %>
-            <%= link_to(l(:download_presentation_label), instructions_project_presentation_path(@project, presentation), :class => 'icon icon-file application-zip presentation-show') if User.current.allowed_to?(:download_presentations, nil, :global => true) %>
-            <%= link_to(l(:edit_presentation_label), edit_project_presentation_path(@project, presentation), :class => 'icon icon-edit presentation-edit') if User.current.allowed_to?(:modify_presentations, nil, :global => true) %>
+            <%= link_to(l(:download_presentation_label), instructions_project_presentation_path(@project, presentation), :class => 'icon icon-file application-zip presentation-show') if User.current.allowed_to?(:download_presentation, nil, :global => true) %>
+            <%= link_to(l(:edit_presentation_label), edit_project_presentation_path(@project, presentation), :class => 'icon icon-edit presentation-edit') if User.current.allowed_to?(:modify_presentation, nil, :global => true) %>
             <%= link_to(l(:delete_presentation_label), project_presentation_path(@project, presentation), :class => 'icon icon-del presentation-del', :confirm => l(:confirm_presentation_deletion), :method => :delete) if User.current.allowed_to?(:delete_presentation, nil, :global => true) %>
         </span>
       </h2>
