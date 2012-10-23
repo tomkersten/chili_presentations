@@ -7,10 +7,10 @@ permission_delete_presentation: Delete presentations
 permission_add_presentation: Add presentations
 default_presentation_title: (none provided)
 new_presentation_label: Add presentation
-delete_presentation_label: Delete this presentation
-edit_presentation_label: Edit this presentation
-download_presentation_label: Download presentation
-view_specific_presentation_label: View presentation
+delete_presentation_label: Delete
+edit_presentation_label: Edit
+download_presentation_label: Download
+view_specific_presentation_label: View
 return_to_presentations_list_label: Back to list of presentations
 confirm_presentation_deletion: Are you sure you want to delete this presentation?
 presentation_deleted_message: "Booyah! The requested presentation has been deleted."
