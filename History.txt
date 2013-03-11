@@ -1,3 +1,11 @@
+=== 0.2.2 / 2013-03-11
+
+* 3 bug fixes:
+
+  * Allow svg files for asset requests
+  * Fixed typo in link permissions-check
+  * Updated some locale strings
+
 === 0.2.1 / 2012-10-22
 
 * 1 bug fix:
