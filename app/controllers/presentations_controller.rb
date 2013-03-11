@@ -84,6 +84,7 @@ class PresentationsController < ApplicationController
       when /\.png$/ then "image/png"
       when /\.gif$/ then "image/gif"
       when /\.(jpeg|jpg)$/ then "image/jpeg"
+      when /\.svg$/ then "image/svg+xml"
       else "text/html"
       end
     end
